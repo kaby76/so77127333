@@ -1,0 +1,17 @@
+grammar g;
+
+start: table EOF;
+
+fragment LOWER: 'a'..'z';
+fragment UPPER: 'A'..'Z';   
+fragment LETTER: (UPPER | LOWER)+;
+fragment DIGIT : '0'..'9';
+
+IDENT : (LETTER | DIGIT | '_')+  ;
+
+table
+    :    IDENT '[' '@'? IDENT ']'
+    ;
+
+WS: (' '| '\t' | '\n' | '\r') { $channel = HIDDEN; }
+    ;
